@@ -1,0 +1,18 @@
+pipeline {
+    agent  { label 'slave_1' }
+    parameters {
+    	choice(name: 'jdk_choise', choices: ['jdk8', 'jdk11'], description:  'select a jdk version')
+    }
+    stages {
+        stage('Build') {
+            steps {
+            	 withEnv(["JAVA_HOME=${ tool "${params.jdk_choise}" }", "PATH+MAVEN=${tool 'Apache Maven 3.6.3'}/bin:${env.JAVA_HOME}/bin"]) {
+            	 echo "Selected ${params.jdk_choise}"
+            	 echo "Running with ${env.JAVA_HOME}"
+            	 
+                sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }
+    }
+}
