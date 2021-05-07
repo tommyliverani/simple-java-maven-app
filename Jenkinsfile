@@ -1,5 +1,5 @@
 pipeline {
-    agent  any
+    agent  {label 'docker-slave'}
     tools{
     	jdk "${jdk_choice}"
     	maven 'Apache Maven 3.6.3'
