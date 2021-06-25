@@ -1,5 +1,12 @@
 pipeline {
     agent  { label 'slave_1' }
+     parameters {
+        string(name: 'GIT_BRANCH', defaultValue: 'master', description: 'Branch del progetto git')
+        string(name: 'GIT_URL', defaultValue: '', description: 'Url del progetto git')
+        string(name: 'ARTIFACT', defaultValue: '', description: 'ArtifactId del progetto git')
+        string(name: 'VERSION', defaultValue: '', description: 'Versione del progetto')
+    }
+
     stages {
         stage('Build') {
             steps {
