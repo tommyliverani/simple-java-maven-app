@@ -10,7 +10,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            	echo 'io non saluto' 
+            	echo 'io non saluto'
+                echo 'branch.name = develop'
+                echo 'projectVersion = 0.0.1-SNAPSHOT'
+                echo 'links.scm = ssh://git@git.gbm.lan:8443/nrdv/rdv-vue-app-contatti.git'
             }
         }
     }
